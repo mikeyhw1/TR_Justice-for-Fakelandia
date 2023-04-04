@@ -18,11 +18,3 @@ const Router: React.FC = () => (
 );
 
 export default Router;
-
-/* <Route path="/" element={<Layout />}>
-    <Route index element={<Home />} />
-    <Route path="about" element={<About />} />
-    <Route path="dashboard" element={<Dashboard />} />
-
-    <Route path="*" element={<NoMatch />} />
-</Route> */
