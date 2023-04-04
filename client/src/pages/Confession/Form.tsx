@@ -2,8 +2,11 @@ import { MenuItem, Select, SelectChangeEvent } from "@mui/material";
 import { useEffect, useState } from "react";
 import { JustTalk, MisdemeanourKind, PostDataProps } from "../../types/misdemeanours.types";
 import { postData } from "../../services/postData";
+import { useMisdemeanourContext } from "../../hooks/useContextHooks";
 
 const Form: React.FC = () => {
+    const { newMisdemeanour, setNewMisdemeanour } = useMisdemeanourContext();
+
     const [subject, setSubject] = useState<string>("");
     const [selectedKey, setSelectedKey] = useState<MisdemeanourKind | JustTalk>();
     const [textbox, setTextbox] = useState<string>("");
@@ -18,11 +21,20 @@ const Form: React.FC = () => {
             const outPutData: PostDataProps = { subject, reason: selectedKey, details: textbox };
             console.log(outPutData);
 
-            const response = await postData(apiPath, outPutData);
-            console.log(response);
+            try {
+                const response = await postData(apiPath, outPutData);
+                console.log(response);
 
-            !response?.success ? setErrorText(`ERROR : ${response?.message}`) : setErrorText("");
-            setResponseText(response?.message);
+                !response?.success ? setErrorText(`ERROR : ${response?.message}`) : setErrorText("");
+                setResponseText(response?.message);
+
+                if (response?.success && !response?.justTalked) {
+                    setNewMisdemeanour([
+                        ...newMisdemeanour,
+                        { citizenId: 666, misdemeanour: selectedKey as MisdemeanourKind, date: "4/4/2023" },
+                    ]);
+                }
+            } catch (error) {}
         }
     };
 
