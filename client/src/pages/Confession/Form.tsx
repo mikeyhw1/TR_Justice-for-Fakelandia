@@ -81,7 +81,6 @@ const Form: React.FC = () => {
                     onChange={handleChange}
                     autoWidth
                 >
-                    {/* <MenuItem value={"all"}>All</MenuItem> */}
                     <MenuItem value={"rudeness"}>Mild Public Rudeness</MenuItem>
                     <MenuItem value={"vegetables"}>Not Eating Your Vegetables</MenuItem>
                     <MenuItem value={"lift"}>Speaking in a Lift</MenuItem>
@@ -90,20 +89,12 @@ const Form: React.FC = () => {
                 </Select>
             </label>
             <textarea
-                // className="form__textarea"
                 cols={50}
                 rows={5}
-                // name="reasonForSparing"
                 value={textbox}
                 placeholder={"Content"}
                 onChange={(e) => setTextbox(e.target.value)}
-                // onChange={(e) => {
-                //     // validation(e);
-                //     handleChange(e);
-                // }}
-                // id="reasonForSparing"
             />
-            {/* {formValid !== undefined && <input type="submit" disabled={formValid ? "" : "disabled"} />} */}
             <input type="submit" disabled={!formValid} />
             <h5 className="ErrorText">{errorText}</h5>
             <h5 className="ErrorText">{responseText}</h5>
