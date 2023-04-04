@@ -1,17 +1,29 @@
 import { MenuItem, Select, SelectChangeEvent } from "@mui/material";
 import { useEffect, useState } from "react";
-import { MisdemeanourKind } from "../../types/misdemeanours.types";
+import { JustTalk, MisdemeanourKind, PostDataProps } from "../../types/misdemeanours.types";
+import { postData } from "../../services/postData";
 
 const Form: React.FC = () => {
     const [subject, setSubject] = useState<string>("");
-    const [selectedKey, setSelectedKey] = useState<MisdemeanourKind | "talk">();
+    const [selectedKey, setSelectedKey] = useState<MisdemeanourKind | JustTalk>();
     const [textbox, setTextbox] = useState<string>("");
     const [formValid, setFormValid] = useState<boolean>(false);
     const [errorText, setErrorText] = useState<string>("");
+    const [responseText, setResponseText] = useState<string>("");
 
-    const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-        alert(`The name you entered was: ${subject}`);
+        const apiPath = `http://localhost:8080/api/confess`;
+        if (subject && selectedKey && textbox) {
+            const outPutData: PostDataProps = { subject, reason: selectedKey, details: textbox };
+            console.log(outPutData);
+
+            const response = await postData(apiPath, outPutData);
+            console.log(response);
+
+            !response?.success ? setErrorText(`ERROR : ${response?.message}`) : setErrorText("");
+            setResponseText(response?.message);
+        }
     };
 
     const handleChange = (event: SelectChangeEvent) => {
@@ -19,6 +31,10 @@ const Form: React.FC = () => {
     };
 
     useEffect(() => {
+        valiation();
+    }, [subject, selectedKey, textbox]);
+
+    const valiation = () => {
         let tempErrorText = "";
         let tempFormValid = true;
         if (!subject) {
@@ -35,7 +51,7 @@ const Form: React.FC = () => {
         }
         setErrorText(tempErrorText);
         setFormValid(tempFormValid);
-    }, [subject, selectedKey, textbox]);
+    };
 
     return (
         <form className="form" onSubmit={handleSubmit}>
@@ -58,7 +74,7 @@ const Form: React.FC = () => {
                     <MenuItem value={"vegetables"}>Not Eating Your Vegetables</MenuItem>
                     <MenuItem value={"lift"}>Speaking in a Lift</MenuItem>
                     <MenuItem value={"united"}>Supporting Manchester United</MenuItem>
-                    <MenuItem value={"talk"}>I just want to talk</MenuItem>
+                    <MenuItem value={"just-talk"}>I just want to talk</MenuItem>
                 </Select>
             </label>
             <textarea
@@ -78,6 +94,7 @@ const Form: React.FC = () => {
             {/* {formValid !== undefined && <input type="submit" disabled={formValid ? "" : "disabled"} />} */}
             <input type="submit" disabled={!formValid} />
             <h5 className="ErrorText">{errorText}</h5>
+            <h5 className="ErrorText">{responseText}</h5>
         </form>
     );
 };
