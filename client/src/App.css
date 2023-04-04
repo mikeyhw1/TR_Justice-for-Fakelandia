@@ -2,7 +2,7 @@
     width: 100vw;
     height: 100vh;
     text-align: center;
-    background-color: lightcoral;
+    /* background-color: lightcoral; */
     /* max-width: 1280px; */
     /* margin: 0 auto; */
     /* padding: 2rem; */
@@ -17,7 +17,7 @@
 .header__titleContainer {
     display: flex;
     flex-direction: column;
-    margin: -2px 5px -2px 5px;
+    margin: -1rem 0.3rem -1rem 0.3rem;
 }
 
 .header__titleText {
@@ -46,7 +46,7 @@
     display: block;
     color: white;
     text-align: center;
-    padding: 14px 16px;
+    padding: 0.9rem 1rem;
     text-decoration: none;
 }
 
@@ -62,42 +62,12 @@
     position: fixed;
     bottom: 0;
     width: 100%;
-    padding: 2px;
+    padding: 0.1rem;
     background-color: #333;
 }
 
-/* .logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
+.pageContent {
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 2rem;
 }
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
-}
-
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
-}
-
-.card {
-  padding: 2em;
-}
-
-.read-the-docs {
-  color: #888;
-} */
