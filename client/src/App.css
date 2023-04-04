@@ -38,6 +38,10 @@
     background-color: #111;
 }
 
+.active {
+    background-color: #04aa6d;
+}
+
 .footer {
     position: fixed;
     bottom: 0;
