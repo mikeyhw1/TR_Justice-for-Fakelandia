@@ -1,5 +1,5 @@
 import { Routes, Route, Outlet, Link } from "react-router-dom";
-import MainLayout from "../components/MainLayout";
+import MainLayout from "../components/layout/MainLayout";
 import Home from "../pages/Home/Home";
 import Misdemeanours from "../pages/Misdemeanours/Misdemeanours";
 import Confession from "../pages/Confession/Confession";

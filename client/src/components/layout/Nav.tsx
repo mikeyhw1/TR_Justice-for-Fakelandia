@@ -15,7 +15,7 @@ const Nav: React.FC = () => (
             </li>
             <li className="navbar__li">
                 <NavLink className="navbar__navLink" to="/confession">
-                    Confession
+                    Confess To Us
                 </NavLink>
             </li>
         </ul>

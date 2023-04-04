@@ -1,11 +1,12 @@
 import { Outlet } from "react-router-dom";
 import Nav from "./Nav";
 import Footer from "./Footer";
+import Header from "./Header";
 
 const MainLayout: React.FC = () => (
     <>
         <header>
-            <Nav />
+            <Header />
         </header>
         <main>
             <Outlet />
