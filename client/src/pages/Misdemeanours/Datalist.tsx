@@ -18,7 +18,6 @@ interface DatalistProps {
 
 const Datalist: React.FC<DatalistProps> = ({ data }) => {
     const [filteredData, setFilteredData] = useState<Misdemeanour[]>();
-
     const [selectedKey, setSelectedKey] = useState<MisdemeanourKind | "all">("all");
 
     useEffect(() => {
@@ -29,6 +28,13 @@ const Datalist: React.FC<DatalistProps> = ({ data }) => {
 
     const handleChange = (event: SelectChangeEvent) => {
         setSelectedKey(event.target.value as MisdemeanourKind | "all");
+    };
+
+    const getRandomPic = () => {
+        const ideaPathWidth = 150;
+        const ideaPathHeight = 150;
+        const ideaPath = `https://picsum.photos/${ideaPathWidth}/${ideaPathHeight}`;
+        return <img src={ideaPath} />;
     };
 
     const misdemeanourIcon = (input: MisdemeanourKind) => {
@@ -88,7 +94,7 @@ const Datalist: React.FC<DatalistProps> = ({ data }) => {
                                     <TableCell align="left">
                                         {row.misdemeanour} {misdemeanourIcon(row.misdemeanour)}
                                     </TableCell>
-                                    <TableCell align="right">___</TableCell>
+                                    <TableCell align="right">{getRandomPic()}</TableCell>
                                 </TableRow>
                             ))}
                     </TableBody>
