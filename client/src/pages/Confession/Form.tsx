@@ -44,6 +44,7 @@ const Form: React.FC = () => {
 
     useEffect(() => {
         valiation();
+        setResponseText("");
     }, [subject, selectedKey, textbox]);
 
     const valiation = () => {
