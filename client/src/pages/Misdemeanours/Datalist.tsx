@@ -6,7 +6,7 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
-import { Misdemeanour } from "../../types/misdemeanours.types";
+import { Misdemeanour, MisdemeanourKind } from "../../types/misdemeanours.types";
 
 interface DatalistProps {
     // dataAmount: number;
@@ -17,6 +17,21 @@ const Datalist: React.FC<DatalistProps> = ({ data }) => {
     React.useEffect(() => {
         console.log(data);
     }, []);
+
+    const misdemeanourIcon = (input: MisdemeanourKind) => {
+        switch (input) {
+            case "rudeness":
+                return "🤪";
+            case "vegetables":
+                return "🥗";
+            case "lift":
+                return "🗣️";
+            case "united":
+                return "😈";
+            default:
+                return "❌";
+        }
+    };
 
     return (
         <TableContainer component={Paper}>
@@ -36,7 +51,9 @@ const Datalist: React.FC<DatalistProps> = ({ data }) => {
                                 {row.citizenId}
                             </TableCell>
                             <TableCell align="left">{row.date}</TableCell>
-                            <TableCell align="left">{row.misdemeanour}</TableCell>
+                            <TableCell align="left">
+                                {row.misdemeanour} {misdemeanourIcon(row.misdemeanour)}
+                            </TableCell>
                             <TableCell align="right">___</TableCell>
                         </TableRow>
                     ))}
