@@ -67,7 +67,13 @@
 }
 
 .pageContent {
+    background-color: whitesmoke;
+    color: black;
     display: flex;
     flex-direction: column;
     padding-bottom: 2rem;
+}
+
+.select {
+    background-color: wheat;
 }
