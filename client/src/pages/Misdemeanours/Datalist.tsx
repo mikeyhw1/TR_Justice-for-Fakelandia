@@ -17,6 +17,8 @@ interface DatalistProps {
 }
 
 const Datalist: React.FC<DatalistProps> = ({ data }) => {
+    // TODO: Extensions & Deployment
+
     const [filteredData, setFilteredData] = useState<Misdemeanour[]>();
     const [selectedKey, setSelectedKey] = useState<MisdemeanourKind | "all">("all");
 
